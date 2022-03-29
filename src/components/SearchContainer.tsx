@@ -5,7 +5,6 @@ import { useData } from 'src/hooks/useData';
 import Category from './Category';
 import { getNewArray, resetStorage } from 'src/utils/utils';
 import TagList from './TagList';
-import Loading from './Loading';
 import Error from 'src/components/Error';
 
 interface SearchContainerProps {
@@ -91,13 +90,20 @@ const SearchContainer = ({
 
   return (
     <Container>
-      <Input
-        placeholder="재료 입력"
-        onChange={handleInput}
-        value={inputValue}
-        onKeyUp={handleKeyUp}
-      />
-      <button onClick={handleReset}>X</button>
+      <div className="cont-input">
+        <Input
+          placeholder="재료 입력"
+          onChange={handleInput}
+          value={inputValue}
+          onKeyUp={handleKeyUp}
+        />
+        <button
+          onClick={handleReset}
+          style={{ display: inputValue === '' ? 'none' : 'inline-block' }}
+        >
+          ⓧ
+        </button>
+      </div>
       <TagList selectedList={selectedList} setSelectedList={setSelectedList} />
       {ingredients.current.length > 0 ? (
         <AutoComplete
@@ -124,6 +130,18 @@ const SearchContainer = ({
 const Container = styled.div`
   width: 100vw;
   background-color: whitesmoke;
+
+  .cont-input {
+    display: flex;
+    align-items: center;
+    button {
+      position: relative;
+      left: -50px;
+      font-size: 24px;
+      color: #c5c5c5;
+      cursor: pointer;
+    }
+  }
 `;
 const Input = styled.input`
   margin: 10px;
