@@ -39,11 +39,8 @@ const ResultContainer = ({ urlArray, selectedList }: ResultContainerProps) => {
         if (!realResult.has(result[i][j].idDrink)) {
           realResult.set(result[i][j].idDrink, 1);
         } else {
-          let count = realResult.get(result[i][j].idDrink);
-          if (count) {
-            count += 1;
-            realResult.set(result[i][j].idDrink, count);
-          }
+          const newCount = (realResult.get(result[i][j].idDrink) || 1) + 1;
+          realResult.set(result[i][j].idDrink, newCount);
         }
       }
     }
