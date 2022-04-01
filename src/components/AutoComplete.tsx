@@ -68,14 +68,14 @@ const AutoComplete = ({
       // 일치하는 문자가 없으면 return
       if (index === -1) return;
 
-      ingredient = addHighlight(ingredient);
-
       // 첫번째 문자부터 일치하면 inputValue 첫글자를 대문자로
       // 아니면 ingredient 첫글자 변경
       ingredient =
         index === 0
           ? ingredient.replaceAll(inputValue, capitalize(inputValue))
           : capitalize(ingredient);
+
+      ingredient = addHighlight(ingredient);
 
       newArr.push(ingredient);
     });
@@ -95,7 +95,14 @@ const AutoComplete = ({
 
   // 문자열 강조
   const addHighlight = (str: string) => {
-    return str.replaceAll(inputValue, `<b>${inputValue}</b>`);
+    // 소문자와 대문자 구분 없이 모두 강조
+    str = str
+      .replaceAll(inputValue, `<b>${inputValue}</b>`)
+      .replaceAll(
+        inputValue.toUpperCase(),
+        `<b>${inputValue.toUpperCase()}</b>`,
+      );
+    return str;
   };
   // 문자열 일반화
   const removeHighlight = (str: string) => {
