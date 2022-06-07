@@ -28,32 +28,27 @@ const AutoComplete = ({
   const [searchedIngredients, setSearchedIngredients] = useState<string[]>([]);
 
   useEffect(() => {
-    // 포커스가 넘어갈 때 포커스 컨트롤
     if (currentFocus < 0 || currentFocus === searchedIngredients.length) {
       currentFocus < 0
         ? setCurrentFocus(searchedIngredients.length - 1)
         : setCurrentFocus(0);
     }
 
-    // null인 경우 return => 오버플로우가 일어남
     if (!searchedIngredients[currentFocus]) return;
     const ingredient = removeHighlight(searchedIngredients[currentFocus]);
     setCurrentItem(ingredient);
 
-    // 포커스에 따라 input값 세팅
     isArrowPressed && setInputValue(ingredient);
   }, [currentFocus]);
 
   useEffect(() => {
     setCurrentFocus(0);
-    // null인 경우 return => 오버플로우가 일어남
     if (!searchedIngredients[currentFocus]) return;
     const ingredient = removeHighlight(searchedIngredients[currentFocus]);
     setCurrentItem(ingredient);
   }, [searchedIngredients]);
 
   useEffect(() => {
-    // 새로운값이 아니거나 빈문자열
     if (!isNewInput || !inputValue) {
       !inputValue && setSearchedIngredients([]);
       return;
@@ -61,26 +56,29 @@ const AutoComplete = ({
     let newArr: string[] = [];
 
     ingredients.sort();
+
     ingredients.forEach((ingredient: string) => {
       ingredient = ingredient.toLowerCase();
       inputValue = inputValue.toLowerCase();
       const index = ingredient.indexOf(inputValue);
-      // 일치하는 문자가 없으면 return
       if (index === -1) return;
 
-      // 첫번째 문자부터 일치하면 inputValue 첫글자를 대문자로
-      // 아니면 ingredient 첫글자 변경
-      ingredient =
-        index === 0
-          ? ingredient.replaceAll(inputValue, capitalize(inputValue))
-          : capitalize(ingredient);
+      // console.log(index);
+
+      // ingredient =
+      //   index === 0
+      //     ? ingredient.replaceAll(inputValue, capitalize(inputValue))
+      //     : capitalize(ingredient);
 
       ingredient = addHighlight(ingredient);
 
-      newArr.push(ingredient);
+      if (index === 0) {
+        ingredient = capitalize(ingredient, 3);
+      }
+
+      newArr.push(capitalize(ingredient, 0));
     });
 
-    // 최대 개수 조절
     if (newArr.length > 10) {
       newArr = newArr.slice(0, 10);
     }
@@ -88,23 +86,15 @@ const AutoComplete = ({
     setSearchedIngredients(newArr);
   }, [inputValue]);
 
-  // 첫글자 대문자로 반환
-  const capitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  const capitalize = (str: string, i: number) => {
+    return str.slice(0, i) + str.charAt(i).toUpperCase() + str.slice(i + 1);
   };
 
-  // 문자열 강조
   const addHighlight = (str: string) => {
-    // 소문자와 대문자 구분 없이 모두 강조
-    str = str
-      .replaceAll(inputValue, `<b>${inputValue}</b>`)
-      .replaceAll(
-        inputValue.toUpperCase(),
-        `<b>${inputValue.toUpperCase()}</b>`,
-      );
+    str = str.replaceAll(inputValue, '<b>$&</b>');
     return str;
   };
-  // 문자열 일반화
+
   const removeHighlight = (str: string) => {
     return str.replaceAll('<b>', '').replaceAll('</b>', '');
   };
