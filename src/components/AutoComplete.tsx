@@ -127,7 +127,7 @@ const Container = styled.div`
   background-color: #fff;
   border: 1px solid #bbbbbb;
   border-radius: 10px;
-  top: 100px;
+  top: 3em;
   z-index: 1;
   padding: 8px;
   width: 100%;
@@ -145,8 +145,8 @@ const Button = styled.button`
   text-align: start;
   border-radius: 8px;
   cursor: pointer;
-  :hover {
-    background-color: pink;
+  &:hover {
+    background-color: #ffd3da;
   }
   b {
     color: #d86679;

@@ -18,9 +18,9 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   position: fixed;
   width: 100%;
+  height: 60px;
   top: 0;
   background-color: pink;
-  height: 60px;
   z-index: 2;
 
   h1 {

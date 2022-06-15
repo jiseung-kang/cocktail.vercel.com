@@ -28,7 +28,7 @@ const TagList = ({ selectedList, setSelectedList }: Props) => {
         {Object.values(selectedList).map((tag: string) => {
           return (
             <button key={tag} onClick={handleOnRemove} value={tag}>
-              {tag} [x]
+              {tag}
             </button>
           );
         })}
@@ -50,12 +50,18 @@ const Tag = styled.div`
   width: 100vw;
   overflow-x: scroll;
   white-space: nowrap;
+
   button {
     border-radius: 5px;
     height: 30px;
     margin: 0 0.1rem;
     background-color: #ddd;
     border: 2px solid #bbb;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fff;
+    }
   }
 `;
 

@@ -62,6 +62,14 @@ const CategoryContainer = styled.article`
   display: flex;
   height: 60px;
   overflow-y: scroll;
+
+  li {
+    cursor: pointer;
+  }
+
+  li:hover {
+    background-color: #fff;
+  }
 `;
 
 export default Category;
