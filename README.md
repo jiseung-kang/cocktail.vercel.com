@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [Today's Cocktail](https://cocktail-vercel-com.vercel.app/)
 
-## Getting Started
+## Quick Start
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+```
+git clone https://github.com/jiseung-kang/cocktail.vercel.com.git
+cd cocktail.vercel.com
+npm install
+npm run dev 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## **🚪** Overview
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+[The CocktailDB API](https://www.thecocktaildb.com/)를 활용한 검색한 재료로 만들 수 있는 칵테일을 추천해주는 서비스입니다. 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## **Tech Stack**
+`Next.js`, `TypeScript`, `SWR`, `Styled-Components`, `Vercel`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## **Feature**
 
-## Learn More
+- 재료 자동완성 기능을 제공합니다. 키보드 및 마우스를 이동해 재료를 선택할 수 있습니다.
+<img src="./previews/자동완성.gif" style="width: 50%;">
 
-To learn more about Next.js, take a look at the following resources:
+- 태그 리스트를 제공합니다. 박스 입력 및 마우스 클릭으로 태그를 추가하거나 태그를 다시 눌러 삭제할 수 있습니다.    
+<img src="./previews/태그 리스트.gif" style="width: 50%;">
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 검색된 칵테일에 대해 자연스러운 무한 스크롤이 구현되어 있습니다. 페이지 이동 시 위치를 기억합니다.
+<img src="./previews/무한 스크롤.gif" style="width: 50%;">
+<img src="./previews/위치 기억.gif" style="width: 50%;">
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- 즐겨찾기에 칵테일을 추가하고 삭제할 수 있습니다.    
+<img src="./previews/즐겨찾기.gif" style="width: 50%;">
